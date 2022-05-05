@@ -1,6 +1,7 @@
 # Welcome to Comments App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 To run the app please clone it and use:
 1. npm install
 2. npm start
@@ -17,7 +18,7 @@ Additions:
 - Header row with the company logo (can be enlarged onClick)
 - New comment is being added to the UI list top 
 
-### How can the app improve further?
+## How can the app improve further?
 
 - Add TS fot types validation
 - Add Unit tests over the current Jest implementation
