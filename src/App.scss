@@ -24,12 +24,19 @@
 	.new-comment-form {
 		padding: 12px 0 24px 0;
 
-		.ant-btn {
-			border-color: rgb(198 69 150);
+		&-textarea {
+			width: calc(100% - 63px);
+			height: 55px;
+			textarea {
+				border-radius: 8px 0 0 8px !important;
+			}
 		}
 
-		.ant-btn:hover, .ant-input:hover {
-			border-color: #415285;
+		&-btn {
+			height: 55px;
+			background-color: #a265b2 !important;
+			border-color: #a265b2;
+			border-radius: 0 8px 8px 0 !important;
 		}
 
 	}
@@ -46,17 +53,31 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 
-			.comment {
+			.comment-info {
 				max-width: 200px;
-	
-				.ant-list-item-meta-description {
-					text-overflow: ellipsis;
-					overflow: hidden;
-				}
-	
-			}
-		}
 
+				.ant-list-item-meta {
+
+					&-content {
+						flex: 1;
+						width: 0;
+						color: rgba(0, 0, 0, 0.85);
+						width: 160px;
+					}
+
+					&-description {
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+					
+				}
+			}
+
+			.comment-body {
+				padding: 0 18px
+			}
+
+		}
 
 	}
 
@@ -71,15 +92,6 @@
 		border-radius: 100px;
 		background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
 		box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
-	}
-
-	.comment {
-		.ant-list-item-meta-content {
-			flex: 1;
-			width: 0;
-			color: rgba(0, 0, 0, 0.85);
-			width: 160px;
-		}
 	}
 
 	@media only screen and (max-width: 768px) {

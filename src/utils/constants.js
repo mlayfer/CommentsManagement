@@ -1,0 +1,9 @@
+const constants = {
+	MESSAGES_LIMIT: 500,
+	COMMENTS_RESULTS_BULK: 20,
+	HEADER_LOGO_WIDTH: 60,
+	COMMENT_MAX_LENGTH: 100,
+	COMMENT_ROWS: 2,
+};
+
+export default constants;

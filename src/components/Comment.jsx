@@ -1,20 +1,27 @@
-import React, {useState, useRef, useEffect} from "react";
-import { List, message, Avatar, Skeleton, Divider } from 'antd';
+import React from "react";
+import { List, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-const Comment = ({item}) => {
+const Comment = ({ item }) => {
 
 	return (
 		<List.Item key={item.id}>
 			<List.Item.Meta
-				className={'comment'}
-				avatar={<Avatar icon={<UserOutlined />} />}
-				title={<a href="#">{item.name}</a>}
+				className={'comment-info'}
+				avatar={
+					<Avatar icon={<UserOutlined />} />
+				}
+				title={item.name}
 				description={item.email}
 			/>
-			<div style={{padding: '0 18px'}}>{item.body}</div>
+			<article 
+				className={'comment-body'}
+			>
+				{item.body}
+			</article>
 		</List.Item>
 	);
+
 };
 
 export default Comment;

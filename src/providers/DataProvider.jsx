@@ -1,7 +1,7 @@
-
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import api from "../utils/api";
+import constants from "../utils/constants";
 
 const dataContext = React.createContext();
 
@@ -9,8 +9,9 @@ export const useCommentsData = () => {
 	return useContext(dataContext);
 };
 
-const DataProvider = ({children}) => {
+const DataProvider = ({ children }) => {
 
+	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
@@ -18,10 +19,16 @@ const DataProvider = ({children}) => {
 	}, []);
 
 	const getComments = () => {
-		axios.get(`${api.getComments}?_limit=20`).then(res => {
+		if (loading) {
+			return;
+		}
+		setLoading(true);
+		axios.get(`${api.getComments}?_limit=${constants.COMMENTS_RESULTS_BULK}`).then(res => {
 			setData([...data, ...res.data]);
+			setLoading(false);
 		}).catch(function (error) {
 			console.log(error.message);
+			setLoading(false);
 		})
 	}
 
@@ -32,7 +39,6 @@ const DataProvider = ({children}) => {
 			name: 'Aviad Coppenhagen'
 		}
 		setData([comment, ...data]);
-		console.log(data);
 		axios.post(api.addComment, comment).then(res => {
 			setData([...data, ...res.data]);
 			console.log(`We're not really going to get here.. right?!`);
@@ -45,6 +51,7 @@ const DataProvider = ({children}) => {
 	return (
 		<dataContext.Provider value={{
 			data,
+			loading,
 			getComments,
 			addComment,
 		}}>

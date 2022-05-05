@@ -1,10 +1,11 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState } from "react";
 import { Input, Button } from 'antd';
-import {useCommentsData} from './../providers/DataProvider';
+import { useCommentsData } from './../providers/DataProvider';
+import constants from "../utils/constants";
 
 const { TextArea } = Input;
 
-const NewCommentForm = (params) => {
+const NewCommentForm = () => {
 
 	const { addComment } = useCommentsData();
 	const [comment, setComment] = useState('');
@@ -15,28 +16,32 @@ const NewCommentForm = (params) => {
 	}
 
 	return (
-		<div className={'new-comment-form'}>
+		<section className={'new-comment-form'}>
 			   <Input.Group compact>
 					<TextArea 
-						style={{ width: 'calc(100% - 63px)', height: 55 }} 
-						showCount 
-						maxLength={100} 
-						autoSize={{ minRows: 2, maxRows: 2 }}
+						className={'new-comment-form-textarea'} 
+						maxLength={constants.COMMENT_MAX_LENGTH} 
+						autoSize={{ 
+							minRows: constants.COMMENT_ROWS, 
+							maxRows: constants.COMMENT_ROWS 
+						}}
+						placeholder="Feel free to add a new comment"
 						allowClear 
+						showCount
 						value={comment}
-						placeholder="Feel free to add a comment"
 						onChange={(e) => setComment(e.target.value)}
 					/>
 					<Button 
+						className={'new-comment-form-btn'}
 						type="primary" 
-						style={{ backgroundColor: '#d0368a', height: 55 }}
 						onClick={onSend}
 					>
 						Send
 					</Button>
 				</Input.Group>
-		</div>
+		</section>
 	);
+
 };
 
 export default NewCommentForm;

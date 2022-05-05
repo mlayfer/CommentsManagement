@@ -1,9 +1,9 @@
-import React, {useState, useRef, useEffect} from "react";
+import React from "react";
 import NewCommentForm from "./NewCommentForm";
 import CommentList from "./CommentList";
 import Header from "./Header";
 
-const CommentsApp = (params) => {
+const CommentsApp = () => {
 
 	return (
 		<div>

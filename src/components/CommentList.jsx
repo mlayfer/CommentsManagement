@@ -1,13 +1,13 @@
-import React, {useState, useRef, useEffect} from "react";
-import { List, message, Avatar, Skeleton, Divider } from 'antd';
+import React from "react";
+import { List, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {useCommentsData} from './../providers/DataProvider';
+import { useCommentsData } from './../providers/DataProvider';
 import Comment from './Comment';
+import constants from "../utils/constants";
 
-const CommentList = (params) => {
+const CommentList = () => {
 
-	const [loading, setLoading] = useState(false);
-	const { getComments, data } = useCommentsData();
+	const { getComments, data, loading } = useCommentsData();
 
 	return (
 		<div
@@ -17,9 +17,17 @@ const CommentList = (params) => {
 			<InfiniteScroll
 				dataLength={data.length}
 				next={getComments}
-				hasMore={data.length < 500}
-				loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-				endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+				hasMore={data.length < constants.MESSAGES_LIMIT}
+				loader={
+					<Skeleton 
+						avatar 
+						paragraph={{ rows: constants.COMMENT_ROWS }} 
+						active={loading} 
+					/>
+				}
+				endMessage={
+					<Divider plain>It is all, nothing more 🤐</Divider>
+				}
 				scrollableTarget="scrollableDiv"
 			>
 				<List
@@ -31,6 +39,7 @@ const CommentList = (params) => {
 			</InfiniteScroll>
 		</div>
 	);
+	
 };
 
 export default CommentList;

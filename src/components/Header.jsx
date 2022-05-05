@@ -1,15 +1,15 @@
-import React, {useState, useRef, useEffect} from "react";
+import React from "react";
 import { Image } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import constants from "../utils/constants";
 
-const Header = ({item}) => {
+const Header = () => {
 
 	return (
 		<header className={'comments-app-header'}>
-			    <Image
-					width={60}
-					src="assets/steps.png"
-				/>
+			<Image
+				width={constants.HEADER_LOGO_WIDTH}
+				src="assets/steps.png"
+			/>
 		</header>
 	)
 	
