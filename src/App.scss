@@ -3,10 +3,19 @@
 	min-height: -webkit-fill-available;
 }
 
+.comments-app-header {
+    height: 60px;
+    background-color: #415285;
+    flex: 1;
+    flex-direction: row;
+    text-align: right;
+    padding: 0 10px;
+}
+
 .comments-app-container {
 	max-width: 800px;
 	margin: auto;
-	padding: 24px 10px;
+	padding: 14px 10px;
 
 	h2, h4 {
 		color: #415285;
@@ -14,6 +23,15 @@
 
 	.new-comment-form {
 		padding: 12px 0 24px 0;
+
+		.ant-btn {
+			border-color: rgb(198 69 150);
+		}
+
+		.ant-btn:hover, .ant-input:hover {
+			border-color: #415285;
+		}
+
 	}
 
 	.comments-list {
@@ -24,15 +42,21 @@
 		border: 1px solid rgba(140, 140, 140, 0.35);
 		border-radius: 8px;
 
-		.comment {
-			align-items: flex-start;	
-			
-			.ant-list-item-meta-description {
-				text-overflow: ellipsis;
-				overflow: hidden;
-			}
+		.ant-list-item {
+			justify-content: flex-start;
+			align-items: flex-start;
 
+			.comment {
+				max-width: 200px;
+	
+				.ant-list-item-meta-description {
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+	
+			}
 		}
+
 
 	}
 
@@ -57,5 +81,12 @@
 			width: 160px;
 		}
 	}
+
+	@media only screen and (max-width: 768px) {
+		/* For mobile phones: */
+		h2, h4 {
+			display: none;
+		}
+	  }
 
 }

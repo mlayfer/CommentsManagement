@@ -25,11 +25,20 @@ const DataProvider = ({children}) => {
 		})
 	}
 
-	const addComment = (comment) => {
-		axios.post(api.addComment, {comment}).then(res => {
+	const addComment = (text) => {
+		const comment = {
+			body: text,
+			email: 'aviad@steps.me',
+			name: 'Aviad Coppenhagen'
+		}
+		setData([comment, ...data]);
+		console.log(data);
+		axios.post(api.addComment, comment).then(res => {
 			setData([...data, ...res.data]);
+			console.log(`We're not really going to get here.. right?!`);
 		}).catch(function (error) {
 			console.log(error.message);
+			console.log(`Don't be sad, it was a rigged game from the beginning`);
 		})
 	}
 

@@ -9,6 +9,11 @@ const NewCommentForm = (params) => {
 	const { addComment } = useCommentsData();
 	const [comment, setComment] = useState('');
 
+	const onSend = () => {
+		addComment(comment);
+		setComment('');
+	}
+
 	return (
 		<div className={'new-comment-form'}>
 			   <Input.Group compact>
@@ -18,13 +23,14 @@ const NewCommentForm = (params) => {
 						maxLength={100} 
 						autoSize={{ minRows: 2, maxRows: 2 }}
 						allowClear 
+						value={comment}
 						placeholder="Feel free to add a comment"
 						onChange={(e) => setComment(e.target.value)}
 					/>
 					<Button 
 						type="primary" 
 						style={{ backgroundColor: '#d0368a', height: 55 }}
-						onClick={() => addComment(comment)}
+						onClick={onSend}
 					>
 						Send
 					</Button>

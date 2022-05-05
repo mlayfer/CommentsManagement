@@ -12,7 +12,7 @@ const Comment = ({item}) => {
 				title={<a href="#">{item.name}</a>}
 				description={item.email}
 			/>
-			<div>{item.body}</div>
+			<div style={{padding: '0 18px'}}>{item.body}</div>
 		</List.Item>
 	);
 };
