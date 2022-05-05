@@ -1,46 +1,23 @@
 import React, {useState, useRef, useEffect} from "react";
 import { List, message, Avatar, Skeleton, Divider } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import {useCommentsData} from './../providers/DataProvider';
+import Comment from './Comment';
 
 const CommentList = (params) => {
 
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState([]);
-
-	const loadMoreData = () => {
-		if (loading) {
-			return;
-		}
-		setLoading(true);
-		fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-			.then(res => res.json())
-			.then(body => {
-				setData([...data, ...body.results]);
-				setLoading(false);
-			})
-			.catch(() => {
-				setLoading(false);
-			});
-	};
-
-	useEffect(() => {
-		loadMoreData();
-	}, []);
+	const { getComments, data } = useCommentsData();
 
 	return (
 		<div
 			id="scrollableDiv"
-			style={{
-				height: 400,
-				overflow: 'auto',
-				padding: '0 16px',
-				border: '1px solid rgba(140, 140, 140, 0.35)',
-			}}
+			className={'comments-list'}
 		>
 			<InfiniteScroll
 				dataLength={data.length}
-				next={loadMoreData}
-				hasMore={data.length < 50}
+				next={getComments}
+				hasMore={data.length < 500}
 				loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
 				endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
 				scrollableTarget="scrollableDiv"
@@ -48,14 +25,7 @@ const CommentList = (params) => {
 				<List
 					dataSource={data}
 					renderItem={item => (
-						<List.Item key={item.id}>
-							<List.Item.Meta
-								avatar={<Avatar src={item.picture.large} />}
-								title={<a href="https://ant.design">{item.name.last}</a>}
-								description={item.email}
-							/>
-							<div>Content</div>
-						</List.Item>
+						<Comment item={item} />
 					)}
 				/>
 			</InfiniteScroll>

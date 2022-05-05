@@ -1,7 +1,7 @@
-import './App.css';
+import './App.scss';
 import CommentsApp from "./components/CommentsApp";
-import DataProvider from "./providers/DataProvider";
 import "antd/dist/antd.css";
+import DataProvider from './providers/DataProvider';
 
 function App() {
 	return (
